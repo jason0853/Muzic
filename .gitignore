@@ -1,0 +1,10 @@
+*.log
+.DS_Store
+.sass-cache
+node_modules
+dev/assets/css
+dev/assets/js
+dev/views
+dist/assets/css
+dist/assets/js
+dist/views
