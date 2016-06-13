@@ -60,8 +60,8 @@ gulp.task('minifyhtml', function() {
 gulp.task('styles', function() {
     gulp.src('src/styles/style.scss')
         .pipe(sourcemaps.init())
-        .pipe(sass().on('error', sass.logError))
-        .pipe(sourcemaps.write())
+            .pipe(sass().on('error', sass.logError))
+        .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('dev/assets/css'));
 });
 
