@@ -1,0 +1,97 @@
+$login-bg-color: #1abc9c;
+
+#app {
+    .muzic-login {
+        width: 100%;
+        height: 100vh;
+        background: {
+            color: $login-bg-color;
+        }
+        text: {
+            align: center;
+        }
+        &:before {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+        }
+        .login-box {
+            width: 35%;
+            display: inline-block;
+            border: {
+                radius: 6px;
+            }
+            background: #edeff1;
+            box : {
+                shadow: 7px 7px 10px #7F8C8D;
+            }
+            text: {
+                align: left;
+            }
+            vertical: {
+                align: middle;
+            }
+            .login-title {
+                height: 50px;
+                border: {
+                    top: {
+                        left: {
+                            radius: 6px;
+                        }
+                        right: {
+                            radius: 6px;
+                        }
+                    }
+                }
+                background: {
+                    color: #BDC3C7;
+                }
+                h4 {
+                    margin: 0;
+                    line: {
+                        height: 50px;
+                    }
+                    text: {
+                        align: center;
+                    }
+                }
+            }
+            .sign-up {
+                margin: {
+                    top: 10px;
+                }
+                padding: {
+                    top: 10px;
+                }
+                border: {
+                    top: {
+                        width: 1px;
+                        style: dashed;
+                        color: #bbb;
+
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Add ngAnimate
+// #app {
+//     .muzic-login {
+//         .ng-hide-remove {
+//             animation: 0.5s swing ease;
+//         }
+//     }
+// }
+
+@media (max-width: 767px) {
+    #app {
+        .muzic-login {
+            .login-box {
+                width: 90%;
+            }
+        }
+    }
+}

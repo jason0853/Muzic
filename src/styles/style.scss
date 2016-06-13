@@ -1,5 +1,9 @@
 @charset 'utf-8';
 
+// Import bootstrap sass files
 @import 'node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
+
+// Import custom modules
 @import 'modules/base.scss';
 @import 'modules/layout.scss';
+@import 'pages/login.scss';

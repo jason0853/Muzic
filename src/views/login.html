@@ -1,3 +1,15 @@
-<div ng-controller="loginController">
-    <h1>{{ message }} page</h1>
+<div class="muzic-login" ng-controller="loginController">
+    <div class="login-box">
+        <div class="login-title">
+            <h4><span class="glyphicon glyphicon-headphones"></span> Muzic</h4>
+        </div>
+        <div ng-switch on="signupStatus">
+            <div class="login-form" ng-switch-default>
+                <div ng-include="'views/partials/loginForm.html'"></div>
+            </div>
+            <div class="login-form signup-form" ng-switch-when=true>
+                <div ng-include="'views/partials/signupForm.html'"></div>
+            </div>
+        </div>
+    </div>
 </div>
