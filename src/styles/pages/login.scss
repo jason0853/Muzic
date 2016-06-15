@@ -1,5 +1,7 @@
+// Define variables
 $login-bg-color: #1abc9c;
 
+// Styling
 #app {
     .muzic-login {
         width: 100%;
@@ -86,7 +88,18 @@ $login-bg-color: #1abc9c;
 //     }
 // }
 
-@media (max-width: 767px) {
+// Media Query
+@media screen and (max-width: 1033px) {
+    #app {
+        .muzic-login {
+            .login-box {
+                width: 50%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
     #app {
         .muzic-login {
             .login-box {
