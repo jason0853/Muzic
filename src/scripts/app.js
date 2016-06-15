@@ -4,10 +4,11 @@
 var angular = require('angular');
 var ngRoute = require('angular-route');
 var ngAnimate = require('angular-animate');
+var ngMessages = require('angular-messages');
 var uibs = require('angular-ui-bootstrap');
 
 // Create a new module
-var app = angular.module('app', ['ngRoute', 'ngAnimate', 'ui.bootstrap']);
+var app = angular.module('app', ['ngRoute', 'ngAnimate', 'ngMessages', 'ui.bootstrap']);
 
 // Configure app routes
 app.config(function($routeProvider) {
