@@ -1,0 +1,18 @@
+$success-color: #2ecc71;
+$error-color: #e74c3c;
+
+#app {
+    .muzic-login {
+        .signup-form {
+            .fui-check {
+                color: $success-color;
+            }
+            .help-block {
+                color: $error-color;
+                p {
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}

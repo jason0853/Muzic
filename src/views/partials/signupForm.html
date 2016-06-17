@@ -1,20 +1,78 @@
-<form action="">
-    <div class="form-group">
-        <input type="email" id="signup-email" class="form-control login-field" placeholder="Enter your email">
-        <label class="login-field-icon fui-mail" for="signup-email"></label>
+<form action=""
+      name="signup"
+      novalidate
+      ng-submit="register(signup.$valid)">
+    <div class="form-group"
+         ng-class="{ 'has-success': signup.email.$valid && !signup.email.$pristine }">
+        <input type="email"
+               id="signup-email"
+               class="form-control login-field"
+               name="email"
+               ng-model="user.email"
+               placeholder="Email"
+               required>
+        <label class="login-field-icon"
+               ng-class="{ 'fui-mail': !signup.email.$valid, 'fui-check': signup.email.$valid }"
+               for="signup-email">
+        </label>
+
+        <div class="help-block" ng-messages="signup.email.$error" ng-if="signup.email.$touched">
+            <div ng-messages-include="views/partials/messages.html"></div>
+        </div>
     </div>
-    <div class="form-group">
-        <input type="password" id="signup-pw" class="form-control login-field" placeholder="Password">
-        <label class="login-field-icon fui-lock" for="signup-pw"></label>
+    <div class="form-group"
+         ng-class="{ 'has-success': signup.password.$valid && !signup.password.$pristine }">
+        <input type="password"
+               id="signup-pw"
+               class="form-control login-field"
+               name="password"
+               ng-model="user.password"
+               placeholder="Password"
+               required
+               ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/"
+               ng-minlength="6"
+               ng-maxlength="12">
+        <label class="login-field-icon"
+               ng-class="{ 'fui-lock': !signup.password.$valid, 'fui-check': signup.password.$valid }"
+               for="signup-pw">
+        </label>
+        <div class="help-block" ng-messages="signup.password.$error" ng-if="signup.password.$touched">
+            <div ng-messages-include="views/partials/messages.html"></div>
+        </div>
     </div>
-    <div class="form-group">
-        <input type="password" id="confirm-pw" class="form-control login-field" placeholder="Confirm password">
-        <label class="login-field-icon fui-lock" for="confirm-pw"></label>
+    <div class="form-group"
+         ng-class="{ 'has-success': signup.repassword.$valid && !signup.repassword.$pristine }">
+        <input type="password"
+               id="confirm-pw"
+               class="form-control login-field"
+               name="repassword"
+               ng-model="user.repassword"
+               placeholder="Confirm password"
+               required
+               pw-check="user.password">
+        <label class="login-field-icon fui-lock"
+               ng-class="{ 'fui-lock': !signup.repassword.$valid, 'fui-check': signup.repassword.$valid }"
+               for="confirm-pw"></label>
+        <div class="help-block" ng-messages="signup.repassword.$error" ng-if="signup.repassword.$touched">
+            <div ng-messages-include="views/partials/messages.html"></div>
+        </div>
     </div>
-    <div class="form-group">
-        <input type="text" id="signup-nickname" class="form-control login-field" placeholder="Enter your nickname">
-        <label class="login-field-icon fui-user" for="signup-nickname"></label>
+    <div class="form-group"
+         ng-class="{ 'has-success': signup.nickname.$valid && !signup.nickname.$pristine }">
+        <input type="text"
+               id="signup-nickname"
+               class="form-control login-field"
+               name="nickname"
+               ng-model="user.nickname"
+               placeholder="Nickname"
+               required>
+        <label class="login-field-icon"
+               ng-class="{ 'fui-user': !signup.nickname.$valid, 'fui-check': signup.nickname.$valid }"
+               for="signup-nickname"></label>
+        <div class="help-block" ng-messages="signup.nickname.$error" ng-if="signup.nickname.$touched">
+            <div ng-messages-include="views/partials/messages.html"></div>
+        </div>
     </div>
-    <button type="button" class="btn btn-primary btn-lg btn-block">Create an account</button>
+    <button type="submit" class="btn btn-primary btn-lg btn-block" ng-disabled="signup.$invalid">Create an account</button>
     <button type="button" class="btn btn-default btn-lg btn-block" ng-click="signupToggle()">Cancel</button>
 </form>

@@ -26,3 +26,6 @@ app.config(function($routeProvider) {
 // Contoller
 app.controller('loginController', require('./controllers/loginController'));
 app.controller('mainController', require('./controllers/mainController'));
+
+// Directive
+app.directive('pwCheck', require('./directives/pwCheckDirective'));
