@@ -1,7 +1,6 @@
-<form action=""
-      name="signup"
+<form name="signup"
       novalidate
-      ng-submit="register(signup.$valid)">
+      ng-submit="register(signup.$valid, user)">
     <div class="form-group"
          ng-class="{ 'has-success': signup.email.$valid && !signup.email.$pristine }">
         <input type="email"
@@ -15,7 +14,6 @@
                ng-class="{ 'fui-mail': !signup.email.$valid, 'fui-check': signup.email.$valid }"
                for="signup-email">
         </label>
-
         <div class="help-block" ng-messages="signup.email.$error" ng-if="signup.email.$touched">
             <div ng-messages-include="views/partials/messages.html"></div>
         </div>
