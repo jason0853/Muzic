@@ -1,0 +1,32 @@
+.navbar {
+    border: {
+        radius: $no-radius;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #app {
+        .navbar {
+            input {
+                width: 300px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #app {
+        .navbar {
+            ul.nav {
+                text: {
+                    align: right;
+                }
+                ul.dropdown-menu {
+                    text: {
+                        align: right;
+                    }    
+                }
+            }
+        }
+    }
+}
