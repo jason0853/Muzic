@@ -35,9 +35,12 @@ app.config(function($routeProvider) {
         templateUrl: 'views/login.html',
         controller: 'loginController',
         resolve: {
-            logout: function(authFactory) {
+            logout: function($location, authFactory, toastr) {
                 authFactory.logout();
-                console.log('logout is succeed');
+                $location.path('/');
+                toastr.success('You have been successfully logged out.', 'Success', {
+                    closeButton: true
+                });
             }
         }
     })
@@ -45,13 +48,16 @@ app.config(function($routeProvider) {
         redirectTo: '/'
     });
 })
-.run(function($rootScope, $location) {
+.run(function($rootScope, $location, toastr) {
+    // Error in Authentication
     $rootScope.$on('$routeChangeError', function(event, next, previous, error) {
-        console.log(error);
-
+        // console.log(error);
         if (error = 'AUTH_REQUIRED') {
-            console.log('Error in Auth');
+            // console.log('Error in Auth');
             $location.path('/');
+            toastr.warning('Please Log in!', 'Warning', {
+                closeButton: true
+            });
         }
     });
 });
