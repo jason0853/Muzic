@@ -1,11 +1,16 @@
 @charset 'utf-8';
 
-// Import bootstrap sass files
+// Import library scss files
 @import 'node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
+@import 'lib/flat-ui';
+@import 'lib/angular-toastr';
 
 // Import custom modules
-@import 'modules/base.scss';
-@import 'modules/layout.scss';
-@import 'modules/form.scss';
-@import 'modules/animation.scss';
-@import 'pages/login.scss';
+@import 'modules/variables';
+@import 'modules/base';
+@import 'modules/layout';
+@import 'modules/form';
+@import 'modules/navbar';
+@import 'modules/animation';
+
+@import 'pages/login';
