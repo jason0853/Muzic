@@ -1,20 +1,44 @@
-body {
-    #app {
-        .main{
-            button {
-                border: {
-                    radius: $no-radius;
+#app {
+    .main{
+        button {
+            border: {
+                radius: $no-radius;
+            }
+        }
+        input {
+            border: {
+                radius: $no-radius;
+            }
+        }
+        .row {
+            margin: $no-margin;
+            .resultContainer {
+                background: {
+                    color: $result-bgColor;
+                }
+                h6 {
+                    margin: $no-margin;
+                    padding-top: 12px;
+                    span {
+                        position: relative;
+                        top: 2px;
+                    }
                 }
             }
-            input {
-                border: {
-                    radius: $no-radius;
+            .listContainer {
+                background: {
+                    color: $list-bgColor;
+                }
+                color: #fff;
+                h6 {
+                    margin: $no-margin;
+                    padding-top: 12px;
+                    span {
+                        position: relative;
+                        top: 2px;
+                    }
                 }
             }
-            .row {
-                margin: $no-margin;
-            }
-
         }
     }
 }

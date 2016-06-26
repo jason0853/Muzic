@@ -1,6 +1,10 @@
 .navbar {
+    height: 53px;
     border: {
         radius: $no-radius;
+    }
+    margin: {
+        bottom: 0;
     }
 }
 
@@ -17,14 +21,19 @@
 @media screen and (max-width: 767px) {
     #app {
         .navbar {
+            height: 153px;
             ul.nav {
                 text: {
                     align: right;
                 }
                 ul.dropdown-menu {
+                    position: absolute;
+                    border: {
+                        radius: 0;
+                    }
                     text: {
                         align: right;
-                    }    
+                    }
                 }
             }
         }
