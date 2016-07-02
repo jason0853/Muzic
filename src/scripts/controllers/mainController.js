@@ -28,14 +28,12 @@ module.exports = function($scope, youtubeFactory) {
                 for (var time in timeArr) {
                     $scope.items[time].duration = timeArr[time];
                 }
-                // To add a property of viewCount in items object
+                // To append the properties of viewCount and likeCount in items object
                 for (var i = 0; i < videoInformation.viewCounts.length; i++) {
                     $scope.items[i].viewCount = videoInformation.viewCounts[i];
                     $scope.items[i].likeCount = videoInformation.likeCounts[i];
                 }
                 console.log(items);
-
-
             });
         });
     };

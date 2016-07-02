@@ -8,7 +8,7 @@ module.exports = function($config, $http, $q) {
 
         $http({
             method: 'GET',
-            url: 'https://www.googleapis.com/youtube/v3/search',
+            url: $config.apiSearch,
             params: {
                 key: $config.apiKey,
                 order: 'date',
@@ -27,6 +27,7 @@ module.exports = function($config, $http, $q) {
         return deferred.promise;
     };
 
+    // To get video information from youtube api
     youtubeFactory.videoInfo = function(items) {
         var deferred = $q.defer();
 
@@ -39,7 +40,7 @@ module.exports = function($config, $http, $q) {
         for (var i = 0; i < items.length; i++) {
             $http({
                 method: 'GET',
-                url: 'https://www.googleapis.com/youtube/v3/videos',
+                url: $config.apiVideo,
                 params: {
                     key: $config.apiKey,
                     part: 'contentDetails, statistics',
