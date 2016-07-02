@@ -2,6 +2,7 @@
     .main {
         .resultContainer {
             ul {
+                clear: both;
                 li.thumbnail {
                     border: {
                         width: 0;
@@ -87,6 +88,10 @@
 
                     }
                 }
+            }
+            .getMoreBtn {
+                position: relative;
+                top: -10px;
             }
         }
         .listContainer {

@@ -1,6 +1,6 @@
 #app {
     .main{
-        button {
+        button, .btn {
             border: {
                 radius: $no-radius;
             }
@@ -18,12 +18,27 @@
                     color: $result-bgColor;
                 }
                 h6 {
+                    float: left;
                     margin: $no-margin;
                     padding-top: 12px;
                     span {
                         position: relative;
                         top: 2px;
                     }
+                }
+                .category {
+                    float: right;
+                    margin: {
+                        top: 7px;
+                        right: 5px;
+                        bottom: 5px;
+                    }
+                    .btn-primary:active,
+                    .btn-primary.active,
+                    .open > .dropdown-toggle.btn-primary {
+                        background: $main-btn-color !important;
+                    }
+
                 }
             }
             .listContainer {

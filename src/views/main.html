@@ -2,7 +2,13 @@
     <div ng-include="'views/partials/navbar.html'"></div>
     <div class="row">
         <div class="col-sm-9 resultContainer">
-            <h6><span class="glyphicon glyphicon-music"></span></h6>
+            <div>
+                <h6><span class="glyphicon glyphicon-music"></span></h6>
+                <div class="btn-group category">
+                    <a href="" class="btn btn-primary active">Recent muzic</a>
+                    <a href="" class="btn btn-primary">Popular muzic</a>
+                </div>
+            </div>
             <ul class="row">
                 <li class="col-xs-6 col-sm-3 thumbnail" ng-repeat="item in items track by $index">
                     <div class="muzicItem">
@@ -21,6 +27,7 @@
                     </div>
                 </li>
             </ul>
+            <button type="button" class="btn btn-block btn-lg btn-primary getMoreBtn"><i class="fui-plus-circle"></i> Get More</button>
         </div>
         <div class="col-sm-3 listContainer">
             <h6><span class="fui-heart"></span></h6>
