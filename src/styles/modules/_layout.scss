@@ -13,9 +13,11 @@ html {
                     height: calc(100% - 53px);
                     .resultContainer {
                         height: 100%;
+                        overflow: auto;
                     }
                     .listContainer {
                         height: 100%;
+                        overflow: auto;
                     }
                 }
             }

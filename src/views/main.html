@@ -2,10 +2,28 @@
     <div ng-include="'views/partials/navbar.html'"></div>
     <div class="row">
         <div class="col-sm-9 resultContainer">
-            <h6><span class="glyphicon glyphicon-music"></span> Result list</h6>
+            <h6><span class="glyphicon glyphicon-music"></span></h6>
+            <ul class="row">
+                <li class="col-xs-6 col-sm-3 thumbnail" ng-repeat="item in items track by $index">
+                    <div class="muzicItem">
+                        <img ng-src="{{ item.snippet.thumbnails.medium.url }}">
+                        <p class="title">{{ item.snippet.title }}</p>
+                        <p class="muzicInfo">
+                            <span><i class="glyphicon glyphicon-thumbs-up"></i> {{ item.likeCount }}</span>
+                            <span><i class="fui-eye"></i> {{ item.viewCount }}</span>
+                            <span><i class="glyphicon glyphicon-time"></i> {{ item.duration }}</span>
+                        </p>
+                        <div class="dim">
+                            <p>
+                                <span class="fui-plus"></span>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
         <div class="col-sm-3 listContainer">
-            <h6><span class="fui-heart"></span> My favorite list</h6>
+            <h6><span class="fui-heart"></span></h6>
         </div>
     </div>
 </div>

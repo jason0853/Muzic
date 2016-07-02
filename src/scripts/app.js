@@ -18,11 +18,11 @@ app.config(function($routeProvider) {
     $routeProvider
     .when('/', {
         templateUrl: 'views/login.html',
-        controller: 'loginController'
+        // controller: 'loginController'
     })
     .when('/main', {
         templateUrl: 'views/main.html',
-        controller: 'mainController',
+        // controller: 'mainController',
         resolve: {
             currentAuth: function(authFactory) {
                 var auth = authFactory.auth();
@@ -33,7 +33,7 @@ app.config(function($routeProvider) {
     })
     .when('/logout', {
         templateUrl: 'views/login.html',
-        controller: 'loginController',
+        // controller: 'loginController',
         resolve: {
             logout: function($location, authFactory, toastr) {
                 authFactory.logout();
@@ -69,6 +69,7 @@ app.controller('mainController', require('./controllers/mainController'));
 // Directive
 app.directive('pwCheck', require('./directives/pwCheckDirective'));
 
-// Factory
+// Service
 app.constant('$config', require('./services/config'));
 app.factory('authFactory', require('./services/authFactory'));
+app.factory('youtubeFactory', require('./services/youtubeFactory'));

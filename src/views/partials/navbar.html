@@ -5,9 +5,9 @@
         </div>
         <form class="navbar-form navbar-left" role="search">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for music artists and titles.">
+                <input type="text" class="form-control" ng-model="muzic.keyword" placeholder="Search for music artists and titles.">
                 <span class="input-group-btn">
-                    <button class="btn btn-info" type="button">
+                    <button class="btn btn-info" type="button" ng-click="search()">
                         <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                     </button>
                 </span>
