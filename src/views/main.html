@@ -5,18 +5,18 @@
             <div>
                 <h6><span class="glyphicon glyphicon-music"></span></h6>
                 <div class="btn-group category">
-                    <a href="" class="btn btn-primary active">Recent muzic</a>
-                    <a href="" class="btn btn-primary">Popular muzic</a>
+                    <a class="btn btn-primary active" ng-click="loadRecentMuzic()">Recent muzic</a>
+                    <a class="btn btn-primary" ng-click="loadPopularMuzic()">Popular muzic</a>
                 </div>
             </div>
             <ul class="row">
-                <li class="col-xs-6 col-sm-3 thumbnail" ng-repeat="item in items track by $index">
+                <li class="col-xs-6 col-sm-3 thumbnail" ng-repeat="item in youtubeData.muzic">
                     <div class="muzicItem">
                         <img ng-src="{{ item.snippet.thumbnails.medium.url }}">
                         <p class="title">{{ item.snippet.title }}</p>
                         <p class="muzicInfo">
-                            <span><i class="glyphicon glyphicon-thumbs-up"></i> {{ item.likeCount }}</span>
-                            <span><i class="fui-eye"></i> {{ item.viewCount }}</span>
+                            <span><i class="glyphicon glyphicon-thumbs-up"></i> {{ item.likeCount | number }}</span>
+                            <span><i class="fui-eye"></i> {{ item.viewCount | number }}</span>
                             <span><i class="glyphicon glyphicon-time"></i> {{ item.duration }}</span>
                         </p>
                         <div class="dim">

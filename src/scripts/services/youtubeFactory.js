@@ -2,11 +2,20 @@ module.exports = function($config, $http, $q) {
 
     var youtubeFactory = {};
 
-    // Call recent videos from youtube api when main page is open
-    youtubeFactory.recentData = function() {
-        var deferred = $q.defer();
+    // Define rray
+    youtubeFactory.muzic = [];
 
-        $http({
+    // To Load recentData
+    youtubeFactory.init = function() {
+        youtubeFactory.recentData().then(function(response) {
+            youtubeFactory.muzic = response.data.items;
+            youtubeFactory.setData(youtubeFactory.muzic);
+        });
+    };
+
+    // To get recent data
+    youtubeFactory.recentData = function() {
+        return $http({
             method: 'GET',
             url: $config.apiSearch,
             params: {
@@ -18,47 +27,61 @@ module.exports = function($config, $http, $q) {
                 maxResults: '28',
                 part: 'id,snippet'
             }
-        }).then(function(results) {
-            deferred.resolve(results.data.items);
-        }, function(error) {
-            deferred.reject(error);
         });
-
-        return deferred.promise;
     };
 
-    // To get video information from youtube api
-    youtubeFactory.videoInfo = function(items) {
-        var deferred = $q.defer();
+    // To get recent data
+    youtubeFactory.popularData = function() {
+        $http({
+            method: 'GET',
+            url: $config.apiSearch,
+            params: {
+                key: $config.apiKey,
+                order: 'viewCount',
+                type: 'video',
+                videoCategoryId: '10',
+                videoDuration: 'medium',
+                maxResults: '28',
+                part: 'id,snippet'
+            }
+        }).then(function(response) {
+            youtubeFactory.muzic = response.data.items;
+            youtubeFactory.setData(youtubeFactory.muzic);
+        });
+    };
 
-        var videoInformation = {
-            durations: [],
-            viewCounts: [],
-            likeCounts: []
-        };
+    // To insert videoInfo data into youtubeFactory.muzic
+    youtubeFactory.setData = function(items) {
+        for (var i in items) {
+            (function(idx){
+                youtubeFactory.videoInfo(items[idx].id.videoId).then(function(response) {
+                    // regrular expression to make a time format
+                    var minute = response.data.items[0].contentDetails.duration.match(/\d(?=M)/g);
+                    var second = response.data.items[0].contentDetails.duration.match(/[0-9][0-9](?=S)/g);
+                    if (second == null) {
+                        second = ['00'];
+                    }
 
-        for (var i = 0; i < items.length; i++) {
-            $http({
-                method: 'GET',
-                url: $config.apiVideo,
-                params: {
-                    key: $config.apiKey,
-                    part: 'contentDetails, statistics',
-                    id: items[i].id.videoId
-                }
-            }).then(function(results) {
-                videoInformation.durations.push(results.data.items[0].contentDetails.duration);
-                videoInformation.viewCounts.push(results.data.items[0].statistics.viewCount);
-                videoInformation.likeCounts.push(results.data.items[0].statistics.likeCount);
-                if (videoInformation.durations.length == items.length) {
-                    deferred.resolve(videoInformation);
-                }
-            }, function(error) {
-                deferred.reject(error);
-            });
+                    items[idx].duration = [minute, second].join(':');
+                    items[idx].likeCount = response.data.items[0].statistics.likeCount;
+                    items[idx].viewCount = response.data.items[0].statistics.viewCount;
+                });
+            })(i);
+
         }
+    };
 
-        return deferred.promise;
+    //To get video information
+    youtubeFactory.videoInfo = function(videoId) {
+        return $http({
+            method: 'GET',
+            url: $config.apiVideo,
+            params: {
+                key: $config.apiKey,
+                part: 'contentDetails, statistics',
+                id: videoId
+            }
+        });
     };
 
     return youtubeFactory;
