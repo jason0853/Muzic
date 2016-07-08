@@ -5,8 +5,8 @@
             <div>
                 <h6><span class="glyphicon glyphicon-music"></span></h6>
                 <div class="btn-group category">
-                    <a class="btn btn-primary active" ng-click="loadRecentMuzic()">Recent muzic</a>
-                    <a class="btn btn-primary" ng-click="loadPopularMuzic()">Popular muzic</a>
+                    <a class="btn btn-primary" ng-class="{ 'active' : isActive }" ng-click="loadRecentMuzic()">Recent muzic</a>
+                    <a class="btn btn-primary" ng-class="{ 'active' : !isActive }" ng-click="loadPopularMuzic()">Popular muzic</a>
                 </div>
             </div>
             <ul class="row">
@@ -31,6 +31,33 @@
         </div>
         <div class="col-sm-3 listContainer">
             <h6><span class="fui-heart"></span></h6>
+            <div class="todo">
+                <div class="todo-search">
+                    <input class="todo-search-field" type="search" placeholder="Search">
+                </div>
+                <ul>
+                    <li class="todo-done">
+                        <div class="todo-icon fui-volume"></div>
+                        <div class="todo-content">
+                            <h4 class="todo-name">
+                                <strong>Muzic Title</strong>
+                            </h4>
+                            <span>Time</span>
+                            <span class="fui-cross"></span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="todo-icon fui-mute"></div>
+                        <div class="todo-content">
+                            <h4 class="todo-name">
+                                <strong>Muzic Title</strong>
+                            </h4>
+                            <span>Time</span>
+                            <span class="fui-cross"></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

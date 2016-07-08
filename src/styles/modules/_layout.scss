@@ -26,7 +26,18 @@ html {
 }
 
 @media screen and (max-width: 767px) {
-    .row {
-        height: calc(100% - 153px);
+    html {
+        body {
+            #app {
+                .main {
+                    .row {
+                        height: calc(100% - 153px);
+                        .listContainer {
+                            height: auto;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
