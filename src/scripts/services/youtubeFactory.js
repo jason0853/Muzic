@@ -84,5 +84,31 @@ module.exports = function($config, $http, $q) {
         });
     };
 
+    // To search only music keyword
+    youtubeFactory.searchKeyword = function(keyword) {
+        var deferred = $q.defer();
+
+        $http({
+            method: 'GET',
+            url: $config.apiSearch,
+            params: {
+                key: $config.apiKey,
+                order: 'viewCount',
+                type: 'video',
+                videoCategoryId: '10',
+                videoDuration: 'medium',
+                maxResults: '28',
+                part: 'id,snippet',
+                q: keyword
+            }
+        }).then(function(response){
+            youtubeFactory.muzic = response.data.items;
+            youtubeFactory.setData(youtubeFactory.muzic);
+            deferred.resolve(youtubeFactory.muzic);
+        });
+
+        return deferred.promise;
+    };
+
     return youtubeFactory;
 };
