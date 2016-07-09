@@ -60,4 +60,9 @@ module.exports = function($scope, toastr, youtubeFactory) {
             });
         }
     };
+
+    // remove a music item
+    $scope.deleteMuzic = function(idx) {
+        $scope.myMuzicData.splice(idx, 1);
+    }
 };

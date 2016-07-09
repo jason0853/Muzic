@@ -35,7 +35,7 @@
                 <div class="todo-search">
                     <input class="todo-search-field" type="search" placeholder="Search">
                 </div>
-                <ul ng-repeat="muzic in myMuzicData">
+                <ul ng-repeat="muzic in myMuzicData track by $index">
                     <li> <!-- active class: todo-done -->
                         <div class="todo-icon fui-volume"></div>
                         <div class="todo-content">
@@ -43,7 +43,7 @@
                                 <strong>{{ muzic.title }}</strong>
                             </h4>
                             <span>{{ muzic.time }}</span>
-                            <span class="fui-cross"></span>
+                            <span class="fui-cross" ng-click="deleteMuzic($index)"></span>
                         </div>
                     </li>
                     <!-- <li>
