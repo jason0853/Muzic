@@ -3,6 +3,8 @@ module.exports = function($scope, toastr, youtubeFactory) {
     // Insert data
     $scope.youtubeData = youtubeFactory;
 
+    $scope.myMuzicData = [];
+
     // Define an object property to access scope
     $scope.text = { keyword: ''};
 
@@ -36,4 +38,26 @@ module.exports = function($scope, toastr, youtubeFactory) {
         }
     };
 
+    // Add a music item
+    $scope.addMuzic = function(idx, item) {
+        // Check duplicated data
+        var duplicateCheck = $scope.myMuzicData.reduce(function(previous, value, index) {
+            if (item.id.videoId === value.id) {
+                return true;
+            }
+            return previous;
+        }, false);
+
+        if (duplicateCheck) {
+            toastr.warning('You can not select deplicated music.', 'Warning', {
+                closeButton: true
+            });
+        } else {
+            $scope.myMuzicData.push({
+                id: $scope.youtubeData.muzic[idx].id.videoId,
+                title: $scope.youtubeData.muzic[idx].snippet.title,
+                time:  $scope.youtubeData.muzic[idx].duration
+            });
+        }
+    };
 };

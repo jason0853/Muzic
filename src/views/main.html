@@ -10,8 +10,8 @@
                 </div>
             </div>
             <ul class="row">
-                <li class="col-xs-6 col-sm-3 thumbnail" ng-repeat="item in youtubeData.muzic">
-                    <div class="muzicItem">
+                <li class="col-xs-6 col-sm-3 thumbnail" ng-repeat="item in youtubeData.muzic track by $index">
+                    <div class="muzicItem" ng-click="addMuzic($index, item)">
                         <img ng-src="{{ item.snippet.thumbnails.medium.url }}">
                         <p class="title">{{ item.snippet.title }}</p>
                         <p class="muzicInfo">
@@ -35,18 +35,18 @@
                 <div class="todo-search">
                     <input class="todo-search-field" type="search" placeholder="Search">
                 </div>
-                <ul>
-                    <li class="todo-done">
+                <ul ng-repeat="muzic in myMuzicData">
+                    <li> <!-- active class: todo-done -->
                         <div class="todo-icon fui-volume"></div>
                         <div class="todo-content">
                             <h4 class="todo-name">
-                                <strong>Muzic Title</strong>
+                                <strong>{{ muzic.title }}</strong>
                             </h4>
-                            <span>Time</span>
+                            <span>{{ muzic.time }}</span>
                             <span class="fui-cross"></span>
                         </div>
                     </li>
-                    <li>
+                    <!-- <li>
                         <div class="todo-icon fui-mute"></div>
                         <div class="todo-content">
                             <h4 class="todo-name">
@@ -55,7 +55,7 @@
                             <span>Time</span>
                             <span class="fui-cross"></span>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
