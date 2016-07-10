@@ -33,11 +33,15 @@
             <h6><span class="fui-heart"></span></h6>
             <div class="todo">
                 <div class="todo-search">
-                    <input class="todo-search-field" type="search" placeholder="Search">
+                    <input type="search"
+                           class="todo-search-field"
+                           ng-model="searchText"
+                           placeholder="Search">
                 </div>
-                <ul ng-repeat="muzic in myMuzicData track by $index">
-                    <li> <!-- active class: todo-done -->
-                        <div class="todo-icon fui-volume"></div>
+                <ul ng-repeat="muzic in myMuzicData | filter: searchText track by $index">
+                    <li ng-class="{ 'todo-done' : activeMuzic === $index }"
+                        ng-click="selectMuzic($index)">
+                        <div class="todo-icon" ng-class="activeMuzic === $index ? 'fui-volume' : 'fui-mute'"></div>
                         <div class="todo-content">
                             <h4 class="todo-name">
                                 <strong>{{ muzic.title }}</strong>
@@ -46,16 +50,6 @@
                             <span class="fui-cross" ng-click="deleteMuzic($index)"></span>
                         </div>
                     </li>
-                    <!-- <li>
-                        <div class="todo-icon fui-mute"></div>
-                        <div class="todo-content">
-                            <h4 class="todo-name">
-                                <strong>Muzic Title</strong>
-                            </h4>
-                            <span>Time</span>
-                            <span class="fui-cross"></span>
-                        </div>
-                    </li> -->
                 </ul>
             </div>
         </div>

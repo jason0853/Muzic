@@ -58,11 +58,19 @@ module.exports = function($scope, toastr, youtubeFactory) {
                 title: $scope.youtubeData.muzic[idx].snippet.title,
                 time:  $scope.youtubeData.muzic[idx].duration
             });
+
+            // active state in list
+            $scope.activeMuzic = $scope.myMuzicData.length - 1;
         }
     };
 
-    // remove a music item
+    // Remove a music item in list
     $scope.deleteMuzic = function(idx) {
         $scope.myMuzicData.splice(idx, 1);
-    }
+    };
+
+    // Select a music item in list
+    $scope.selectMuzic = function(idx) {
+        $scope.activeMuzic = idx;
+    };
 };
