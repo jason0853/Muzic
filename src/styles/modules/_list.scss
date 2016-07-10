@@ -9,6 +9,9 @@
                     border: {
                         radius: $no-radius;
                     }
+                    .todo-search-field {
+                        width: 90%;
+                    }
                 }
                 ul {
                     border: {
@@ -31,6 +34,12 @@
                             position: absolute;
                             top: 32px;
                             right: 23px;
+                            &:hover {
+                                font: {
+                                    weight: bold;
+                                }
+                                color: #fff;
+                            }
                         }
                         strong {
                             display: block;
