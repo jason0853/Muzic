@@ -3,7 +3,7 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="/#/main"><span class="glyphicon glyphicon-headphones"></span> Muzic</a>
         </div>
-        <form class="navbar-form navbar-left" role="search" ng-submit="loadSearchMuzic(text.keyword)">
+        <form class="navbar-form navbar-left" role="search" ng-submit="loadSearchMuzic(false, text.keyword)">
             <div class="input-group">
                 <input type="text" class="form-control" ng-model="text.keyword" placeholder="Search for music artists and titles.">
                 <span class="input-group-btn">

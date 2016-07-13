@@ -8,32 +8,35 @@ module.exports = function($scope, $rootScope, toastr, playerService, youtubeFact
     $scope.text = { keyword: ''};
 
     // Load data
-    youtubeFactory.init();
+    youtubeFactory.init(false);
 
-    $scope.isActive = true;
+    $scope.isRecentActive = true;
+    $scope.isPopularActive = false;
 
     // Load recent data
     $scope.loadRecentMuzic = function() {
-        youtubeFactory.init();
-        $scope.isActive = true;
+        youtubeFactory.init(false);
+        $scope.isRecentActive = true;
+        $scope.isPopularActive = false;
     };
 
     // Load pupluar data
     $scope.loadPopularMuzic = function() {
-        youtubeFactory.popularData();
-        $scope.isActive = false;
+        youtubeFactory.popularData(false);
+        $scope.isPopularActive = true;
+        $scope.isRecentActive = false;
     };
 
     // Search music keyword
-    $scope.loadSearchMuzic = function(keyword) {
+    $scope.loadSearchMuzic = function(bool, keyword) {
         if (keyword == '') {
             toastr.warning('Please enter some keywords!', 'Warning', {
                 closeButton: true
             });
         } else {
-            youtubeFactory.searchKeyword(keyword).then(function(response) {
-                $scope.text.keyword = '';
-            });
+            youtubeFactory.searchKeyword(bool, keyword);
+            $scope.isPopularActive = false;
+            $scope.isRecentActive = false;
         }
     };
 
@@ -60,7 +63,6 @@ module.exports = function($scope, $rootScope, toastr, playerService, youtubeFact
 
             // active state in list
             $rootScope.activeMuzic = 0;
-
         }
         // insert a data of player list into factory service
         playerListFactory.muzic = $scope.myMuzicData;
@@ -76,5 +78,16 @@ module.exports = function($scope, $rootScope, toastr, playerService, youtubeFact
     // Select a music item in list
     $scope.selectMuzic = function(idx) {
         $scope.$emit('selectMuzic', idx);
+    };
+
+    // Get more music data
+    $scope.getMoreBtn = function(bool, keyword) {
+        if ($scope.isRecentActive) {
+            youtubeFactory.init(bool);
+        } else if ($scope.isPopularActive) {
+            youtubeFactory.popularData(bool);
+        } else {
+            youtubeFactory.searchKeyword(bool, keyword);
+        }
     };
 };

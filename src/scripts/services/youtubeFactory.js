@@ -1,20 +1,29 @@
 module.exports = function($config, $http, $q) {
 
     var youtubeFactory = {};
+    var nextPageToken = '';
 
     // Define array
     youtubeFactory.muzic = [];
 
     // To Load recentData
-    youtubeFactory.init = function() {
-        youtubeFactory.recentData().then(function(response) {
-            youtubeFactory.muzic = response.data.items;
+    youtubeFactory.init = function(isNewQuery) {
+        youtubeFactory.recentData(isNewQuery).then(function(response) {
+            if (isNewQuery) {
+                for (var i = 0; i < response.data.items.length; i++) {
+                    youtubeFactory.muzic.push(response.data.items[i]);
+                }
+            } else {
+                youtubeFactory.muzic = response.data.items;
+
+            }
             youtubeFactory.setData(youtubeFactory.muzic);
+            nextPageToken = response.data.nextPageToken;
         });
     };
 
     // To get recent data
-    youtubeFactory.recentData = function() {
+    youtubeFactory.recentData = function(isNewQuery) {
         return $http({
             method: 'GET',
             url: $config.apiSearch,
@@ -25,13 +34,14 @@ module.exports = function($config, $http, $q) {
                 videoCategoryId: '10',
                 videoDuration: 'medium',
                 maxResults: '28',
-                part: 'id,snippet'
+                part: 'id,snippet',
+                pageToken: isNewQuery ? nextPageToken : ''
             }
         });
     };
 
     // To get recent data
-    youtubeFactory.popularData = function() {
+    youtubeFactory.popularData = function(isNewQuery) {
         $http({
             method: 'GET',
             url: $config.apiSearch,
@@ -42,10 +52,18 @@ module.exports = function($config, $http, $q) {
                 videoCategoryId: '10',
                 videoDuration: 'medium',
                 maxResults: '28',
-                part: 'id,snippet'
+                part: 'id,snippet',
+                pageToken: isNewQuery ? nextPageToken : ''
+
             }
         }).then(function(response) {
-            youtubeFactory.muzic = response.data.items;
+            if (isNewQuery) {
+                for (var i = 0; i < response.data.items.length; i++) {
+                    youtubeFactory.muzic.push(response.data.items[i]);
+                }
+            } else {
+                youtubeFactory.muzic = response.data.items;
+            }
             youtubeFactory.setData(youtubeFactory.muzic);
         });
     };
@@ -67,7 +85,6 @@ module.exports = function($config, $http, $q) {
                     items[idx].viewCount = response.data.items[0].statistics.viewCount;
                 });
             })(i);
-
         }
     };
 
@@ -85,9 +102,7 @@ module.exports = function($config, $http, $q) {
     };
 
     // To search only music keyword
-    youtubeFactory.searchKeyword = function(keyword) {
-        var deferred = $q.defer();
-
+    youtubeFactory.searchKeyword = function(isNewQuery, keyword) {
         $http({
             method: 'GET',
             url: $config.apiSearch,
@@ -99,15 +114,20 @@ module.exports = function($config, $http, $q) {
                 videoDuration: 'medium',
                 maxResults: '28',
                 part: 'id,snippet',
-                q: keyword
+                q: keyword,
+                pageToken: isNewQuery ? nextPageToken : ''
             }
         }).then(function(response){
-            youtubeFactory.muzic = response.data.items;
+            if (isNewQuery) {
+                for (var i = 0; i < response.data.items.length; i++) {
+                    youtubeFactory.muzic.push(response.data.items[i]);
+                }
+            } else {
+                youtubeFactory.muzic = response.data.items;
+            }
             youtubeFactory.setData(youtubeFactory.muzic);
-            deferred.resolve(youtubeFactory.muzic);
+            nextPageToken = response.data.nextPageToken;
         });
-
-        return deferred.promise;
     };
 
     return youtubeFactory;

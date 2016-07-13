@@ -5,8 +5,8 @@
             <div>
                 <h6><span class="glyphicon glyphicon-music"></span></h6>
                 <div class="btn-group category">
-                    <a class="btn btn-primary" ng-class="{ 'active' : isActive }" ng-click="loadRecentMuzic()">Recent muzic</a>
-                    <a class="btn btn-primary" ng-class="{ 'active' : !isActive }" ng-click="loadPopularMuzic()">Popular muzic</a>
+                    <a class="btn btn-primary" ng-class="isRecentActive ? 'active' : ''" ng-click="loadRecentMuzic()">Recent muzic</a>
+                    <a class="btn btn-primary" ng-class="isPopularActive ? 'active' : ''" ng-click="loadPopularMuzic()">Popular muzic</a>
                 </div>
             </div>
             <ul class="row">
@@ -27,7 +27,9 @@
                     </div>
                 </li>
             </ul>
-            <button type="button" class="btn btn-block btn-lg btn-primary getMoreBtn"><i class="fui-plus-circle"></i> Get More</button>
+            <button type="button" class="btn btn-block btn-lg btn-primary getMoreBtn" ng-click="getMoreBtn(true, text.keyword)">
+                <i class="fui-plus-circle"></i> Get More
+            </button>
         </div>
         <div class="col-sm-3 listContainer">
             <h6><span class="fui-heart"></span></h6>
