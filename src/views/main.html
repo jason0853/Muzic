@@ -32,6 +32,8 @@
         <div class="col-sm-3 listContainer">
             <h6><span class="fui-heart"></span></h6>
             <div class="todo">
+                <h5 class="text-center" ng-if="myMuzicData.length == 0">No select</h5>
+                <youtube-video ng-if="myMuzicData.length > 0"></youtube-video>
                 <div class="todo-search">
                     <input type="search"
                            class="todo-search-field"
@@ -47,7 +49,7 @@
                                 <strong>{{ muzic.title }}</strong>
                             </h4>
                             <span>{{ muzic.time }}</span>
-                            <span class="fui-cross" ng-click="deleteMuzic($index)"></span>
+                            <span class="fui-cross" ng-click="deleteMuzic($index, $event)"></span>
                         </div>
                     </li>
                 </ul>

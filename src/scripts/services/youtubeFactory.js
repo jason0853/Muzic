@@ -2,7 +2,7 @@ module.exports = function($config, $http, $q) {
 
     var youtubeFactory = {};
 
-    // Define rray
+    // Define array
     youtubeFactory.muzic = [];
 
     // To Load recentData

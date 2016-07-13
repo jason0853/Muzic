@@ -60,6 +60,12 @@ app.config(function($routeProvider) {
             });
         }
     });
+
+    // load Youtube API code asynchronously
+    var tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 });
 
 // Contoller
@@ -68,8 +74,12 @@ app.controller('mainController', require('./controllers/mainController'));
 
 // Directive
 app.directive('pwCheck', require('./directives/pwCheckDirective'));
+app.directive('youtubeVideo', require('./directives/youtubeVideoDirective'));
+// app.directive('emailCheck', require('./directives/emailCheckDirective'));
 
 // Service
 app.constant('$config', require('./services/config'));
 app.factory('authFactory', require('./services/authFactory'));
 app.factory('youtubeFactory', require('./services/youtubeFactory'));
+app.factory('playerListFactory', require('./services/playerListFactory'));
+app.service('playerService', require('./services/playerService'));

@@ -1,9 +1,8 @@
-module.exports = function($scope, toastr, youtubeFactory) {
+module.exports = function($scope, $rootScope, toastr, playerService, youtubeFactory, playerListFactory) {
 
     // Insert data
     $scope.youtubeData = youtubeFactory;
-
-    $scope.myMuzicData = [];
+    $scope.myMuzicData = playerListFactory.muzic;
 
     // Define an object property to access scope
     $scope.text = { keyword: ''};
@@ -60,17 +59,22 @@ module.exports = function($scope, toastr, youtubeFactory) {
             });
 
             // active state in list
-            $scope.activeMuzic = $scope.myMuzicData.length - 1;
+            $rootScope.activeMuzic = 0;
+
         }
+        // insert a data of player list into factory service
+        playerListFactory.muzic = $scope.myMuzicData;
     };
 
     // Remove a music item in list
-    $scope.deleteMuzic = function(idx) {
+    $scope.deleteMuzic = function(idx, $event) {
+        $event.stopImmediatePropagation();
         $scope.myMuzicData.splice(idx, 1);
+        $scope.$emit('deleteMuzic', idx);
     };
 
     // Select a music item in list
     $scope.selectMuzic = function(idx) {
-        $scope.activeMuzic = idx;
+        $scope.$emit('selectMuzic', idx);
     };
 };
