@@ -65,6 +65,7 @@ module.exports = function($config, $http, $q) {
                 youtubeFactory.muzic = response.data.items;
             }
             youtubeFactory.setData(youtubeFactory.muzic);
+            nextPageToken = response.data.nextPageToken;
         });
     };
 
