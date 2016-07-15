@@ -14,7 +14,7 @@ var toastr = require('angular-toastr');
 var app = angular.module('app', ['ngRoute', 'ngAnimate', 'ngMessages', 'ui.bootstrap', 'firebase', 'toastr']);
 
 // Configure app routes
-app.config(function($routeProvider) {
+app.config(function($routeProvider, $httpProvider) {
     $routeProvider
     .when('/', {
         templateUrl: 'views/login.html',
@@ -47,6 +47,7 @@ app.config(function($routeProvider) {
     .otherwise({
         redirectTo: '/'
     });
+    $httpProvider.interceptors.push('httpInterceptor');
 })
 .run(function($rootScope, $location, toastr) {
     // Error in Authentication
@@ -75,6 +76,7 @@ app.controller('mainController', require('./controllers/mainController'));
 // Directive
 app.directive('pwCheck', require('./directives/pwCheckDirective'));
 app.directive('youtubeVideo', require('./directives/youtubeVideoDirective'));
+app.directive('loading', require('./directives/loadingDirective'));
 // app.directive('emailCheck', require('./directives/emailCheckDirective'));
 
 // Service
@@ -82,4 +84,5 @@ app.constant('$config', require('./services/config'));
 app.factory('authFactory', require('./services/authFactory'));
 app.factory('youtubeFactory', require('./services/youtubeFactory'));
 app.factory('playerListFactory', require('./services/playerListFactory'));
+app.factory('httpInterceptor', require('./services/httpInterceptor'));
 app.service('playerService', require('./services/playerService'));
