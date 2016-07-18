@@ -51,16 +51,13 @@ module.exports = function($scope, $rootScope, toastr, playerService, youtubeFact
         }, false);
 
         if (duplicateCheck) {
-            toastr.warning('You can not select deplicated music.', 'Warning', {
-                closeButton: true
-            });
+            toastr.warning('You can not select deplicated music.', 'Warning', { closeButton: true });
         } else {
             $scope.myMuzicData.push({
                 id: $scope.youtubeData.muzic[idx].id.videoId,
                 title: $scope.youtubeData.muzic[idx].snippet.title,
                 time:  $scope.youtubeData.muzic[idx].duration
             });
-
             // active state in list
             $rootScope.activeMuzic = 0;
         }

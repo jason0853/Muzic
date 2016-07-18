@@ -26,9 +26,9 @@ app.config(function($routeProvider, $httpProvider) {
         resolve: {
             currentAuth: function(authFactory) {
                 var auth = authFactory.auth();
-                // console.log(auth);
+                authFactory.checkUser();
                 return auth.$requireAuth();
-            }
+            },
         }
     })
     .when('/logout', {
@@ -38,9 +38,7 @@ app.config(function($routeProvider, $httpProvider) {
             logout: function($location, authFactory, toastr) {
                 authFactory.logout();
                 $location.path('/');
-                toastr.success('You have been successfully logged out.', 'Success', {
-                    closeButton: true
-                });
+                toastr.success('You have been successfully logged out.', 'Success', { closeButton: true });
             }
         }
     })
@@ -56,9 +54,7 @@ app.config(function($routeProvider, $httpProvider) {
         if (error = 'AUTH_REQUIRED') {
             // console.log('Error in Auth');
             $location.path('/');
-            toastr.warning('Please Log in!', 'Warning', {
-                closeButton: true
-            });
+            toastr.warning('Please Log in!', 'Warning', { closeButton: true });
         }
     });
 
