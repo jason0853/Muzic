@@ -63,9 +63,6 @@ module.exports = function($scope, $rootScope, toastr, playerService, youtubeFact
                 id: $scope.youtubeData.muzic[idx].id.videoId,
                 title: $scope.youtubeData.muzic[idx].snippet.title,
                 time:  $scope.youtubeData.muzic[idx].duration
-            }).then(function(ref) {
-                var id = ref.key();
-                console.log(id);
             });
 
             // active state in list
