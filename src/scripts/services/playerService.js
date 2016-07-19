@@ -75,7 +75,7 @@ module.exports = function($window, $rootScope, playerListFactory) {
     $rootScope.$on('deleteMuzic', function(e, idx) {
         if (idx == playIndex) {
             if (playerListFactory.muzic.length) {
-                if ( idx = playerListFactory.muzic.length - 1) {
+                if ( idx == playerListFactory.muzic.length - 1) {
                     idx = playerListFactory.muzic.length - 1;
                 }
                 player.loadVideoById(playerListFactory.muzic[idx].id, 0);
