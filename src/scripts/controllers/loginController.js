@@ -40,4 +40,9 @@ module.exports = function($scope, $location, $window, toastr, authFactory) {
             toastr.error('an Authentication error occurred', 'Error', { closeButton: true });
         });
     };
+
+    // Lost passoword
+    $scope.pwLost = function() {
+        toastr.info('Please email at jason0853@gmail.com.', 'Information', { closeButton: true });
+    };
 };
