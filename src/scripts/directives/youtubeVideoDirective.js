@@ -6,12 +6,9 @@ module.exports = function($window, $rootScope, playerService, playerListFactory)
         controller: function($scope, $rootScope, $window) {
             // Load youtube iframe api
             if ($scope.myMuzicData.length != 0) {
+                $rootScope.activeMuzic = 0;
                 $window.onYouTubeIframeAPIReady(playerListFactory.muzic[$rootScope.activeMuzic].id);
             }
-
-            $rootScope.$watch('activeMuzic', function(newVal) {
-                // console.log('watch : ' + newVal);
-            }, true);
 
             // To play Youtube
             $scope.playBtn = function() {

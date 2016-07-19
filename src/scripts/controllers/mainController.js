@@ -58,6 +58,16 @@ module.exports = function($scope, $rootScope, toastr, playerService, youtubeFact
                 title: $scope.youtubeData.muzic[idx].snippet.title,
                 time:  $scope.youtubeData.muzic[idx].duration
             });
+
+            playerListFactory.addData({
+                id: $scope.youtubeData.muzic[idx].id.videoId,
+                title: $scope.youtubeData.muzic[idx].snippet.title,
+                time:  $scope.youtubeData.muzic[idx].duration
+            }).then(function(ref) {
+                var id = ref.key();
+                console.log(id);
+            });
+
             // active state in list
             $rootScope.activeMuzic = 0;
         }
@@ -87,4 +97,12 @@ module.exports = function($scope, $rootScope, toastr, playerService, youtubeFact
             youtubeFactory.searchKeyword(bool, keyword);
         }
     };
+
+    // Init a data of my list
+    playerListFactory.initList().then(function(data) {
+        for (var i = 0; i < data.length; i++) {
+            $scope.myMuzicData.push(data[i]);
+        }
+    });
+    
 };

@@ -29,14 +29,18 @@ app.config(function($routeProvider, $httpProvider) {
                 authFactory.checkUser();
                 return auth.$requireAuth();
             },
+            initData: function($config, $firebaseArray) {
+                return $firebaseArray(new Firebase($config.firebaseUrl)).$loaded();
+            }
         }
     })
     .when('/logout', {
         templateUrl: 'views/login.html',
         // controller: 'loginController',
         resolve: {
-            logout: function($location, authFactory, toastr) {
+            logout: function($window, $location, authFactory, toastr) {
                 authFactory.logout();
+                $window.location.reload();
                 $location.path('/');
                 toastr.success('You have been successfully logged out.', 'Success', { closeButton: true });
             }
