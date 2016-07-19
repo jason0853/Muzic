@@ -78,6 +78,7 @@ module.exports = function($scope, $rootScope, toastr, playerService, youtubeFact
     // Remove a music item in list
     $scope.deleteMuzic = function(idx, $event) {
         $event.stopImmediatePropagation();
+        playerListFactory.removeData(idx);
         $scope.myMuzicData.splice(idx, 1);
         $scope.$emit('deleteMuzic', idx);
     };
@@ -104,5 +105,5 @@ module.exports = function($scope, $rootScope, toastr, playerService, youtubeFact
             $scope.myMuzicData.push(data[i]);
         }
     });
-    
+
 };

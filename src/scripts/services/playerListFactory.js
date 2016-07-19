@@ -19,5 +19,13 @@ module.exports = function($config, $firebaseArray, $firebaseObject, authFactory)
         return $firebaseArray(muzicRef).$add(data);
     };
 
+    // Remove data
+    playerListFactory.removeData = function(idx) {
+        playerListFactory.initList().then(function(data) {
+            var item = data[idx];
+            data.$remove(item);
+        });
+    };
+
     return playerListFactory;
 };
