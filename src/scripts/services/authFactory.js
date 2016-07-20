@@ -1,4 +1,4 @@
-module.exports = function($rootScope, $config, $firebaseAuth, $firebaseArray) {
+module.exports = function($rootScope, $location, $config, $firebaseAuth, $firebaseArray) {
     var authFactory = {};
 
     // Initialize FirebaseAuth
@@ -8,6 +8,23 @@ module.exports = function($rootScope, $config, $firebaseAuth, $firebaseArray) {
 
     authFactory.auth = function() {
         return auth;
+    };
+
+    // facebook login
+    authFactory.facebookLogin = function() {
+        auth.$authWithOAuthPopup('facebook').then(function(authData) {
+            rootRef.orderByChild('userId').equalTo(authData.uid).on('value', function(snapshot) {
+                if (snapshot.val()) {
+                    $location.path('/main');
+                } else {
+                    authFactory.userInfo.$add({
+                        nickname: authData.facebook.displayName,
+                        userId: authData.uid
+                    });
+                    $location.path('/main');
+                }
+            });
+        });
     };
 
     // Insert into data to create an account

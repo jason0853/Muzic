@@ -8,6 +8,12 @@ module.exports = function($scope, $location, $window, toastr, authFactory) {
         $scope.signupStatus = !$scope.signupStatus;
     };
 
+    // Login in facebook
+    $scope.fbLogin = function() {
+        authFactory.facebookLogin();
+        toastr.success('Your account has been created successfully.', 'Success', { closeButton: true });
+    };
+
     // Create an account
     $scope.register = function(valid, user) {
         if (valid) {
