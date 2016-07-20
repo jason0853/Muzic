@@ -64,9 +64,6 @@ module.exports = function($scope, $rootScope, toastr, playerService, youtubeFact
                 title: $scope.youtubeData.muzic[idx].snippet.title,
                 time:  $scope.youtubeData.muzic[idx].duration
             });
-
-            // active state in list
-            $rootScope.activeMuzic = 0;
         }
         // insert a data of player list into factory service
         playerListFactory.muzic = $scope.myMuzicData;

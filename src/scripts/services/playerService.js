@@ -75,12 +75,15 @@ module.exports = function($window, $rootScope, playerListFactory) {
     $rootScope.$on('deleteMuzic', function(e, idx) {
         if (idx == playIndex) {
             if (playerListFactory.muzic.length) {
-                if ( idx == playerListFactory.muzic.length - 1) {
-                    idx = playerListFactory.muzic.length - 1;
+                if (idx == playerListFactory.muzic.length) {
+                    player.loadVideoById(playerListFactory.muzic[0].id, 0);
+                    $rootScope.activeMuzic = 0;
+                    playIndex = 0;
+                } else {
+                    player.loadVideoById(playerListFactory.muzic[idx].id, 0);
+                    $rootScope.activeMuzic = idx;
+                    playIndex = idx;
                 }
-                player.loadVideoById(playerListFactory.muzic[idx].id, 0);
-                $rootScope.activeMuzic = idx;
-                playIndex = idx;
             }
         } else if (idx < playIndex) {
             $rootScope.activeMuzic = playIndex - 1;
