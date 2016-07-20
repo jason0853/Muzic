@@ -1,6 +1,6 @@
 # Muzic
 
-[Muzic](http://www.mymuzic.co.kr)** is a site for you to enjoy listening and watching music videos.
+**[Muzic](http://www.mymuzic.co.kr)** is a site for you to enjoy listening and watching music videos.
 
 ## Features
 
