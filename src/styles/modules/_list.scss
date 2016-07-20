@@ -5,6 +5,22 @@
                 margin: {
                     top: 17px;
                 }
+                iframe {
+                    transition: transform 2s;
+                    &.active {
+                        position: fixed;
+                        left: 0;
+                        top: 0;
+                        z-index: 1000;
+                        transform: rotate(360deg);
+                    }
+                }
+                button.resize {
+                    position: fixed;
+                    right: 0;
+                    top: 0;
+                    z-index: 1500;
+                }
                 .todo-search {
                     margin: {
                         top: 10px;

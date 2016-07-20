@@ -4,5 +4,9 @@
         <a class="btn btn-inverse" ng-click="playBtn()"><span class="glyphicon glyphicon-play"></span></a>
         <a class="btn btn-inverse" ng-click="pauseBtn()"><span class="glyphicon glyphicon-pause"></span></a>
         <a class="btn btn-inverse" ng-click="stopBtn()"><span class="glyphicon glyphicon-stop"></span></a>
+        <a class="btn btn-inverse" ng-click="resizeBigBtn()"><span class="glyphicon glyphicon-resize-full"></span></a>
     </div>
+    <button ng-if="activeResize" type="button" class="btn btn-primary resize" ng-click="resizeSmallBtn()">
+        <span class="glyphicon glyphicon-resize-small"></span>
+    </button>
 </div>

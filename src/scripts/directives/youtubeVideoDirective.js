@@ -24,6 +24,18 @@ module.exports = function($window, $rootScope, playerService, playerListFactory)
             $scope.stopBtn = function() {
                 playerService.stopYoutube();
             };
+        },
+        link: function(scope, elem, attrs) {
+            // To resize iframe
+            scope.activeResize = false;
+            scope.resizeBigBtn = function() {
+                scope.activeResize = !scope.activeResize;
+                elem.find('iframe').addClass('active');
+            }
+            scope.resizeSmallBtn = function() {
+                scope.activeResize = !scope.activeResize;
+                elem.find('iframe').removeClass('active');
+            };
         }
     }
 };
