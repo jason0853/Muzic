@@ -7,7 +7,7 @@ module.exports = function($rootScope, $timeout) {
         response: function(response) {
             $timeout(function() {
                 $rootScope.loading = false;
-            }, 3000);
+            }, 1500);
             return response;
         }
     }
